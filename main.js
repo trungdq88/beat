@@ -1,7 +1,10 @@
-const BEAT_PER_MINUTE = 130;
+const BEAT_PER_MINUTE = 80;
 const BEATS = 4;
 const BEEPS_PER_BEAT = BEATS * 2;
 const KEY = 'Giang_score';
+
+const audioBeep = new Audio('sounds/beep.wav');
+const audioBeat = new Audio('sounds/beat.wav');
 
 const INTERVAL = (60 / BEAT_PER_MINUTE / (BEEPS_PER_BEAT / BEATS)) * 1000;
 
@@ -26,6 +29,7 @@ function increaseBeep() {
   if (_beep === 1) {
     increaseBeat();
   }
+  audioBeep.play();
 }
 
 function increaseBeat() {
@@ -38,6 +42,7 @@ function increaseBeat() {
   }
   if (_beat === 1) {
     increaseScore();
+    audioBeat.play();
   }
 }
 
