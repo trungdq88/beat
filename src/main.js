@@ -3,9 +3,6 @@ const BEATS = 4;
 const BEEPS_PER_BEAT = BEATS * 2;
 const KEY = 'Giang_score';
 
-const audioBeep = new Audio('sounds/beep.wav');
-const audioBeat = new Audio('sounds/beat.wav');
-
 const INTERVAL = (60 / BEAT_PER_MINUTE / (BEEPS_PER_BEAT / BEATS)) * 1000;
 
 const $ = document.querySelector.bind(document);
@@ -29,7 +26,7 @@ function increaseBeep() {
   if (_beep === 1) {
     increaseBeat();
   }
-  audioBeep.play();
+  playBeep();
 }
 
 function increaseBeat() {
@@ -42,7 +39,7 @@ function increaseBeat() {
   }
   if (_beat === 1) {
     increaseScore();
-    audioBeat.play();
+    playBeat();
   }
 }
 
@@ -73,6 +70,14 @@ function increaseScore() {
   score += 1;
   localStorage[KEY] = score;
   $('#score').innerText = score;
+}
+
+function playBeat() {
+  new Beep(22050).play(1800, 0.1, [Beep.utils.amplify(20000)]);
+}
+
+function playBeep() {
+  new Beep(22050).play(1200, 0.1, [Beep.utils.amplify(20000)]);
 }
 
 $('#score').innerText = score;
